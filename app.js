@@ -51,16 +51,16 @@ document.getElementById('btn').addEventListener('click', () => {
 
         return new Human(name, feet * 12 + inches, weight, diet,fact);
     })();
-    console.log(newHuman);
+    //console.log(newHuman);
 
-    // Remove form from screen
+    // Remove form from screeng
     document.getElementById('dino-compare').style.display = 'none';
 
     dinoArray.forEach(dino => {
         compareHeight(dino, newHuman.height);
         compareDiet(dino, newHuman.diet);
         compareWeight(dino, newHuman.weight);
-        console.log(dino.fact.map( x => x));
+        //console.log(dino.fact.map( x => x));
     });
 
     //Creating Dino Tiles
@@ -73,7 +73,7 @@ document.getElementById('btn').addEventListener('click', () => {
                     <p class="fact">${newHuman.fact[0]}</fact>
                     </div>`;
     Dom.splice(4,0, humanTile);
-    console.log(Dom);
+    //console.log(Dom);
 
     // Add tiles to DOM
     document.getElementById('grid').innerHTML = Dom.join('\n');
