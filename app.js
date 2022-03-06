@@ -7,7 +7,7 @@ function Animals(species, weight, height, diet, where, when, fact) {
     this.where = where;
     this.when = when;
     this.fact = [fact];
-    this.image = `images/${species.toLowerCase()}.png`;
+    this.image = `images/${species.toLowerCase().replace(/ /g, "")}.png`;
 }
 
 Animals.prototype.addFact = function (fact) {
@@ -31,7 +31,7 @@ fetch('dino.json')
 
 // Create Human Object
 
-function Human(name, height, weight, diet) {
+function Human(name, height, weight, diet,fact) {
     Animals.call(this, "human", weight, height, diet, 'earth', new Date().getDay, `Hello There, I am human, known as ${name}`);
     this.name = name;
 }
@@ -47,12 +47,13 @@ document.getElementById('btn').addEventListener('click', () => {
         let inches = document.getElementById('inches').value;
         let weight = document.getElementById('weight').value;
         let diet = document.getElementById('diet').value;
+        let fact = document.getElementById('fact').value;
 
-        return new Human(name, feet * 12 + inches, weight, diet);
+        return new Human(name, feet * 12 + inches, weight, diet,fact);
     })();
     console.log(newHuman);
-    // Remove form from screen
 
+    // Remove form from screen
     document.getElementById('dino-compare').style.display = 'none';
 
     dinoArray.forEach(dino => {
@@ -62,7 +63,20 @@ document.getElementById('btn').addEventListener('click', () => {
         console.log(dino.fact.map( x => x));
     });
 
-    
+    //Creating Dino Tiles
+    let Dom = dinoTiles(dinoArray);
+
+    //Creating Human Tile
+    let humanTile = `<div class="grid-item">
+                        <h3>${newHuman.name}</h3>
+                        <img src=${newHuman.image} alt=${newHuman.species}/>
+                    <p class="fact">${newHuman.fact[0]}</fact>
+                    </div>`;
+    Dom.splice(4,0, humanTile);
+    console.log(Dom);
+
+    // Add tiles to DOM
+    document.getElementById('grid').innerHTML = Dom.join('\n');
 })
 
 // Create Dino Compare Method 1
@@ -110,5 +124,18 @@ function compareDiet(dino, diet){
 }
 
 // Generate Tiles for each Dino in Array
+function dinoTile(dino){
+    
+    const randomIndex = dino.species === 'Pigeon' ? 0 : Math.floor(Math.random() * dino.fact.length);
+    let fact = dino.fact[randomIndex];
+    return`<div class="grid-item" id=${dino.species.toLowerCase().replace(/ /g, "")}>
+                <h3>${dino.species}</h3>
+                <img src=${dino.image} alt=${dino.species}/>
+                <p class="fact">${fact}</fact>
+         </div>`;
+}
 
-// Add tiles to DOM
+function dinoTiles(dinoArray){
+    return dinoArray.map( dino => dinoTile(dino));
+}
+

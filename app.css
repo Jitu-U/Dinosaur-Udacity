@@ -37,7 +37,7 @@ p {
 
 /* Grid Styles */
 #grid {
-    background: #fff url(images/tracks.png) no-repeat;
+    background: rgba(255, 255, 255, 0) url(images/tracks.png) no-repeat;
     background-size: cover;
     display: flex;
     margin: 2em;
@@ -118,8 +118,10 @@ p {
 
 /* Form Styles */
 .form-container {
-    background: #eee;
-    padding: 1.3em;
+    background: rgba(255, 255, 255, 0.300);
+    border-radius: 21px;
+    padding: 2em;
+    justify-content: space-around;
     text-align: left;
     max-width: 400px;
     margin: 0 auto;
@@ -132,10 +134,18 @@ form p {
     font-family: 'Oswald', sans-serif;
 }
 
+form a{
+    color: black;
+    font-style: italic;
+    margin: 10px;
+}
+
 input {
     padding: 0.7em;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.500);
+    border-radius: 8px;
     border: 0;
+    margin-top: 10px;
 }
 
 .form-field__short {
@@ -155,10 +165,12 @@ select {
 
 #btn {
     display: inline-block;
-    background: #ccc;
+    background: rgba(53, 123, 255, 0.562);
     padding: 0.8em;
     margin: 1.2em auto;
     transition: ease 0.3s all;
+    color: rgb(0, 0, 0);
+    border-radius: 8px;
 }
 
 #btn:hover {
